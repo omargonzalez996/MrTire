@@ -1,10 +1,11 @@
 package api
 
 import (
+	"net/http"
+
 	"database/sql"
 	"log"
 	"minnell/service/user"
-	"net/http"
 
 	"github.com/gorilla/mux"
 )
@@ -25,7 +26,8 @@ func (s *APIServer) Run() error {
 	router := mux.NewRouter()
 	subrouter := router.PathPrefix("/api/v1").Subrouter()
 
-	userHandler := user.NewHandler()
+	userStore := user.NewStore(s.db)
+	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
 
 	log.Println("Server running and listening on port: ", s.addr)

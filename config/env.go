@@ -10,6 +10,7 @@ import (
 type Config struct {
 	PublicHost string
 	Port       string
+	SecretKey  string
 
 	DBUser     string
 	DBPassword string
@@ -27,7 +28,8 @@ func initConfig() Config {
 		DBUser:     getEnv("DB_USER", "administratorPruebas"),
 		DBPassword: getEnv("DB_PASSWORD", "Z&gCeSYp4!Le8aev"),
 		DBAddress:  fmt.Sprintf("%s:%s", getEnv("DB_HOST", "3.137.48.211"), getEnv("DB_PORT", "3306")),
-		DBName:     getEnv("DB_NAME", "minnell"),
+		DBName:     getEnv("DB_NAME", "mrtire"),
+		SecretKey:  getEnv("SECRET_KEY", "marque"),
 	}
 }
 
